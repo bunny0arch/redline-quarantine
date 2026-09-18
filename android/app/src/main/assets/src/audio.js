@@ -1,0 +1,9 @@
+// Tiny synthesis fallback: no downloaded audio was reachable in the build environment.
+// No AI generation service or generated media files are used.
+export class AudioSystem{
+ constructor(settings){this.settings=settings;this.ctx=null;this.osc=[];}
+ start(){if(!this.ctx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;this.ctx=new AC();this.music=this.ctx.createGain();this.music.connect(this.ctx.destination);for(const hz of [41.2,61.85,82.5]){const o=this.ctx.createOscillator();o.type='sine';o.frequency.value=hz;o.connect(this.music);o.start();this.osc.push(o);}}this.ctx.resume().catch(()=>{});this.update();}
+ update(){if(this.music)this.music.gain.setTargetAtTime(this.settings.music?this.settings.volume*.035:0,this.ctx.currentTime,.2);}
+ pause(value){if(this.ctx){if(value)this.ctx.suspend().catch(()=>{});else this.ctx.resume().catch(()=>{});}}
+ play(type){if(!this.ctx)return;const t=this.ctx.currentTime,o=this.ctx.createOscillator(),g=this.ctx.createGain();const map={shot:[130,30,.065,'sawtooth'],reload:[240,110,.14,'square'],pickup:[540,900,.12,'sine'],heal:[280,740,.3,'sine'],hurt:[80,35,.2,'sawtooth'],death:[100,30,.15,'triangle'],door:[60,30,.25,'sawtooth'],craft:[330,660,.15,'triangle'],cure:[220,1100,.6,'sine'],warning:[120,160,.4,'square'],melee:[130,70,.07,'triangle'],win:[440,880,1.2,'sine']},v=map[type]||map.pickup;o.type=v[3];o.frequency.setValueAtTime(v[0],t);o.frequency.exponentialRampToValueAtTime(v[1],t+v[2]);g.gain.setValueAtTime(Math.max(.001,this.settings.volume*.14),t);g.gain.exponentialRampToValueAtTime(.001,t+v[2]);o.connect(g);g.connect(this.ctx.destination);o.start(t);o.stop(t+v[2]);}
+}
