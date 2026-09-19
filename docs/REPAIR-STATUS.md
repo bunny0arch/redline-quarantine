@@ -13,12 +13,13 @@ The following defects were corrected:
 5. Save writes now reject a state whose declared slot does not match the requested slot.
 6. Regression tests were added for companion targeting and malformed-save rejection.
 7. The final boss now has a third enrage phase below 25% health, a one-time reinforcement twist, faster charges, stronger slams, and a sixteen-projectile burst. The original attacks and phase thresholds remain intact.
-8. Door, shooting, damage, boss-awakening, boss-phase, boss-burst, boss-death, and victory feedback now use distinct synthesized cues with no external audio dependency.
-9. Death and completion screens now have distinct visual treatments, richer run summaries, a guarded one-time death modal, and phase-specific boss HUD warnings.
+8. At 20% health, the Heart now performs a one-time final-containment breach: its health is restored to 55%, eight more creatures spawn, movement and attack cadence increase again, and it gains a 20-projectile burst, an eight-shot aimed cone, and a six-shot final pattern.
+9. Door, shooting, damage, boss-awakening, boss-phase, boss-burst, boss-death, and victory feedback now use distinct synthesized cues with no external audio dependency.
+10. Death and completion screens now have distinct visual treatments, richer run summaries, a guarded one-time death modal, and phase-specific boss HUD warnings.
 
 ## Verification completed
 
-- `npm test`: **18 passed, 0 failed**.
+- `npm test`: **19 passed, 0 failed**.
 - `node --check` passed for all source and test JavaScript files.
 - Standalone HTML was regenerated with `scripts/standalone.py` through `scripts/package.py`.
 - Android runtime assets were regenerated with `scripts/sync_android.py` through `scripts/package.py`.
