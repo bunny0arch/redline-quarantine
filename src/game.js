@@ -48,14 +48,15 @@ export class Game {
   this.effects.forEach(e=>e.t-=dt);this.effects=this.effects.filter(e=>e.t>0);
   if(!s.won)this.bossTick(dt);if(this.autosave>0){this.autosave-=dt;if(this.autosave<=0&&p.hp>0)this.save();}
  }
- bossTick(dt){const s=this.s,p=s.player,w=s.world,b=w.boss;if(b.dead)return;if(!b.active){if(p.x>90*48){b.active=true;b.clock=2;this.message('THE HEART · Move out of the red attack markers');this.save();}return;}
- b.phase=b.hp<C.bossHP*.5?2:1;b.clock-=dt;
- if(b.mode==='stalk'){steer(w,b,p,null,b.phase===2?80:62,dt);if(b.clock<=0){b.attack=(b.attack+1)%3;b.tx=p.x;b.ty=p.y;b.mode='warn';b.clock=1;this.sound('warning');}}
- else if(b.mode==='warn'&&b.clock<=0){if(b.attack===0){b.mode='charge';b.clock=.65;const d=Math.hypot(b.tx-b.x,b.ty-b.y)||1;b.vx=(b.tx-b.x)/d*490;b.vy=(b.ty-b.y)/d*490;}
-  else if(b.attack===1){this.effect(b.x,b.y,'#ff5b46',170);for(const a of [p,...s.companions])if(a.hp>0&&dist(a,b)<155&&clearLine(w,b,a))this.damage(a,a.armor?25:40);b.mode='rest';b.clock=1.5;}
-  else{for(let i=0;i<10;i++){const a=i*Math.PI/5;this.bullets.push({x:b.x,y:b.y,vx:Math.cos(a)*180,vy:Math.sin(a)*180,hostile:true,life:3});}b.mode='rest';b.clock=1.5;}}
- else if(b.mode==='charge'){move(w,b,b.vx*dt,b.vy*dt,30);for(const a of [p,...s.companions])if(a.hp>0&&dist(a,b)<55&&(a===p||!b.struck?.includes(a.id))){this.damage(a,a.armor?24:35);if(a!==p)(b.struck??=[]).push(a.id);}if(b.clock<=0){b.mode='rest';b.clock=1.5;b.struck=[];}}
- else if(b.mode==='rest'&&b.clock<=0){b.mode='stalk';b.clock=b.phase===2?1:2;}
+ bossTick(dt){const s=this.s,p=s.player,w=s.world,b=w.boss;if(b.dead)return;if(!b.active){if(p.x>90*48){b.active=true;b.clock=2;this.message('THE HEART · Move out of the red attack markers');this.sound('boss-awaken');this.save();}return;}
+ const phase=b.hp<C.bossHP*.25?3:b.hp<C.bossHP*.5?2:1;if(phase!==b.phase){b.phase=phase;this.sound('boss-phase');this.effect(b.x,b.y,phase===3?'#ff9f58':'#ff5b46',phase===3?210:170);this.message(phase===2?'THE HEART SHEDS ITS SKIN · Keep moving.':'THE HEART IS BREAKING · It calls the dead back.');if(phase===3&&!b.summoned){b.summoned=true;const first=w.enemies.reduce((n,e)=>Math.max(n,Number.isInteger(e.id)?e.id:n),-1)+1;for(let i=0;i<4;i++)w.enemies.push({id:first+i,x:(93+i*2)*48+24,y:(20+(i%2)*10)*48+24,hp:40,alive:true,room:13,cd:0,alert:6});this.message('REINFORCEMENTS · The containment walls are opening.');}}
+ b.clock-=dt;const enraged=b.phase===3,stalkSpeed=enraged?108:b.phase===2?80:62,stalkDelay=enraged?1.1:b.phase===2?1.4:2,restDelay=enraged?.9:1.5;
+ if(b.mode==='stalk'){steer(w,b,p,null,stalkSpeed,dt);if(b.clock<=0){b.attack=(b.attack+1)%(enraged?4:3);b.tx=p.x;b.ty=p.y;b.mode='warn';b.clock=enraged?.75:1;this.sound('warning');}}
+ else if(b.mode==='warn'&&b.clock<=0){if(b.attack===0){b.mode='charge';b.clock=enraged?.52:.65;const d=Math.hypot(b.tx-b.x,b.ty-b.y)||1;b.vx=(b.tx-b.x)/d*(enraged?590:490);b.vy=(b.ty-b.y)/d*(enraged?590:490);}
+  else if(b.attack===1){this.effect(b.x,b.y,'#ff5b46',enraged?190:170);for(const a of [p,...s.companions])if(a.hp>0&&dist(a,b)<(enraged?175:155)&&clearLine(w,b,a))this.damage(a,a.armor?enraged?30:25:enraged?48:40);b.mode='rest';b.clock=restDelay;}
+  else{const count=enraged?16:10,speed=enraged?230:180;for(let i=0;i<count;i++){const a=i*Math.PI*2/count;this.bullets.push({x:b.x,y:b.y,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed,hostile:true,life:3});}if(enraged)this.sound('boss-burst');b.mode='rest';b.clock=restDelay;}}
+ else if(b.mode==='charge'){move(w,b,b.vx*dt,b.vy*dt,30);for(const a of [p,...s.companions])if(a.hp>0&&dist(a,b)<55&&(a===p||!b.struck?.includes(a.id))){this.damage(a,a.armor?enraged?30:24:enraged?44:35);if(a!==p)(b.struck??=[]).push(a.id);}if(b.clock<=0){b.mode='rest';b.clock=restDelay;b.struck=[];}}
+ else if(b.mode==='rest'&&b.clock<=0){b.mode='stalk';b.clock=stalkDelay;}
  }
- win(){if(this.s.won)return;this.s.world.boss.hp=0;this.s.world.boss.dead=true;this.s.won=true;this.bullets=[];this.reveal=0;this.effect(this.s.world.boss.x,this.s.world.boss.y,'#c4ffde',220);this.sound('win');this.message('Containment lifted. Let there be light.');this.save();}
+ win(){if(this.s.won)return;this.s.world.boss.hp=0;this.s.world.boss.dead=true;this.s.won=true;this.bullets=[];this.reveal=0;this.effect(this.s.world.boss.x,this.s.world.boss.y,'#c4ffde',220);this.sound('boss-death');this.sound('win');this.message('Containment lifted. Let there be light.');this.save();}
 }

@@ -1,12 +1,12 @@
-# Latest checkpoint: visual revision 2 repair pass — 2026-09-19
+# Latest checkpoint: boss/UI/audio enhancement pass — 2026-09-19
 
 ## Repair pass
 
-The repair pass preserves the original map, balance, controls, progression, save version, and core gameplay loop. It fixes companion target prioritization, prevents combat-atlas cell bleed, hardens nested save/settings validation, rejects cross-slot writes, and adds regression coverage. The suite now passes 17/17 tests. Standalone and Android runtime copies were regenerated. See `docs/REPAIR-STATUS.md` for the exact changes and verification boundaries.
+The enhancement pass preserves the original map, controls, progression, save version, and core gameplay loop. It adds a harder third Heart phase with a one-time reinforcement twist, distinct door/shooting/damage and boss audio cues, a phase-aware HUD warning, a guarded special death screen, and a richer completion screen. The earlier companion-targeting, renderer-crop, and save-validation repairs remain intact. The suite now passes 18/18 tests. Standalone and Android runtime copies were regenerated. See `docs/REPAIR-STATUS.md` for exact changes and verification boundaries.
 
 User requested a darker non-hospital 2D facility using the uploaded hospital model infrastructure and furniture. Implemented 17 actual GLB-derived furniture sprites, 6 supplied surface textures, a single generated fallback combat atlas, image-based characters/pickups, cold lighting, differentiated industrial/security rooms and wall-separated service passages. Original GLB and the repeatable bake script are included. Read docs/VISUAL-REVISION.md and assets/ATTRIBUTION.md.
 
-17 game-logic tests pass. Native Canvas renderer execution successfully loaded all 24 image assets and produced inspected scene renders. Browser/Android validation, APK and GitHub remain uncompleted. Furniture is decorative, not collision-solid. Characters use rotatable single-frame sprites. Start a new game for the expanded map; existing saves retain their layouts.
+18 game-logic tests pass. Native Canvas renderer execution successfully loaded all 24 image assets and produced inspected scene renders. Browser/Android validation and APK/device testing remain separate release-validation tasks. Furniture is decorative, not collision-solid. Characters use rotatable single-frame sprites. Start a new game for the expanded map; existing saves retain their layouts.
 
 Package: Redline-Quarantine-Visual-v2.zip. Offline standalone HTML embeds the runtime images. Android sync excludes the source GLB. Original v1 ZIP remains available separately.
 
