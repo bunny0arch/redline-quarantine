@@ -38,7 +38,7 @@ export class Game {
   }
   // Separate nearby bodies without allowing collision displacement through walls.
   const live=w.enemies.filter(e=>e.alive&&dist(e,p)<650);for(let i=0;i<live.length;i++)for(let j=i+1;j<live.length;j++){const a=live[i],b=live[j],d=dist(a,b);if(d>0&&d<25){const x=(a.x-b.x)/d*15*dt,y=(a.y-b.y)/d*15*dt;move(w,a,x,y);move(w,b,-x,-y);}}
-  for(let i=0;i<s.companions.length;i++){const a=s.companions[i];if(a.hp<=0)continue;a.cd=Math.max(0,a.cd-dt);let target=live.filter(e=>dist(a,e)<180&&clearLine(w,a,e)).sort((a,b)=>dist(p,a)-dist(p,b))[0];if(!target&&w.boss.active&&!w.boss.dead&&dist(a,w.boss)<280)target=w.boss;
+  for(let i=0;i<s.companions.length;i++){const a=s.companions[i];if(a.hp<=0)continue;a.cd=Math.max(0,a.cd-dt);let target=live.filter(e=>dist(a,e)<180&&clearLine(w,a,e)).sort((x,y)=>dist(a,x)-dist(a,y))[0];if(!target&&w.boss.active&&!w.boss.dead&&dist(a,w.boss)<280)target=w.boss;
    if(target){const reach=target===w.boss?58:34;if(dist(a,target)>reach)steer(w,a,target,this.flow,165,dt);else if(a.cd<=0){const dmg=a.weapon?C.weaponDamage:C.companionDamage;if(target===w.boss){target.hp-=dmg;if(target.hp<=0)this.win();}else this.hitEnemy(target,dmg);a.cd=.85;this.sound('melee');}}
    else{const angle=i*2.4+Math.PI,target={x:p.x+Math.cos(angle)*52,y:p.y+Math.sin(angle)*52};if(dist(a,p)>100)steer(w,a,p,this.flow,185,dt);else if(clearLine(w,a,target)&&dist(a,target)>14)steer(w,a,target,this.flow,125,dt);}
   }

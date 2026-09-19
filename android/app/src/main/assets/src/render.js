@@ -53,7 +53,7 @@ export class Renderer {
   for(const p of this.props)if(p.x>minX*48-160&&p.x<maxX*48+160&&p.y>minY*48-180&&p.y<maxY*48+180)this.sprite(p.name,p.x,p.y,p.width,p.angle);
   this.text('OPERATIONS / SERVICE SPINE',28*48,23*48-9,12,'#6b8a96');this.text('RESTRICTED  →',73*48,24*48,18,'#ad9270');
  }
- atlas(index,x,y,size,angle=0){const im=this.assets.images.combat;if(!im)return;const c=this.ctx,cell=im.width/3,sh=index===2?cell*1.07:cell;c.save();c.translate(x,y);c.rotate(angle);c.drawImage(im,(index%3)*cell,Math.floor(index/3)*cell,cell,sh,-size/2,-size/2,size,size*sh/cell);c.restore();}
+ atlas(index,x,y,size,angle=0){const im=this.assets.images.combat;if(!im)return;const c=this.ctx,cell=im.width/3;c.save();c.translate(x,y);c.rotate(angle);c.drawImage(im,(index%3)*cell,Math.floor(index/3)*cell,cell,cell,-size/2,-size/2,size,size);c.restore();}
  actor(o,type){const c=this.ctx,big=type==='boss',size=big?114:67;this.circle(o.x+3,o.y+7,big?34:18,'#00000066');
   this.atlas(type==='player'?0:type==='ally'?3:big?2:1,o.x,o.y,size,o.angle||0);
   if(type==='player'&&o.gun){const a=o.angle||0;this.atlas(4,o.x+Math.cos(a)*23-Math.sin(a)*4,o.y+Math.sin(a)*23+Math.cos(a)*4,25,a);}

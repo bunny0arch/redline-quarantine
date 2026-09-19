@@ -4,7 +4,7 @@ An Android-first, landscape, top-down survival shooter built for Gamathon. Explo
 
 ## Current delivery status
 
-The game source and offline desktop HTML build are included. **This is an implementation checkpoint, not a verified final Android release.** Sixteen automated game-logic tests pass, including a 200-seed resource-budget test. Browser playtesting was blocked by the preview browser's local-URL security policy. No Android SDK/compiler is available in the authoring environment and downloads timed out: **no APK has been built or tested**. A new GitHub repository could not be created with the connected connector; browser creation needs sign-in. **No remote or GitHub push exists yet.** The ZIP preserves local development history as `redline-history.bundle`.
+The game source and offline desktop HTML build are included. **This is an implementation checkpoint, not a verified final Android release.** Seventeen automated game-logic tests pass, including a 200-seed resource-budget test, companion target selection, and malformed-save rejection. Browser playtesting was blocked by the preview browser's local-URL security policy. No Android SDK/compiler is available in the authoring environment and downloads timed out: **no APK has been built or tested**. A new GitHub repository could not be created with the connected connector; browser creation needs sign-in. **No remote or GitHub push exists yet.** The ZIP preserves local development history as `redline-history.bundle`. See `docs/REPAIR-STATUS.md` for repair details and exact verification boundaries.
 
 ## Play on desktop
 
