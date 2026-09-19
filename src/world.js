@@ -5,13 +5,13 @@ export function createWorld(seed){
  const item=(kind,x,y,amount=1)=>loot.push({id:loot.length,kind,x:x*48+24,y:y*48+24,amount,taken:false});
  const spawn=(x,y,room=-1)=>enemies.push({id:enemies.length,x:x*48+24,y:y*48+24,hp:C.enemyHP,alive:true,room,cd:0,alert:0});
  carve(3,22,86,5); carve(3,19,6,3); carve(2,28,8,8,2); carve(6,27,1,1);
- rooms.push({id:0,name:'Recovery',x:2,y:28,w:8,h:8,explored:false});
+ rooms.push({id:0,name:'Holding bay',x:2,y:28,w:8,h:8,explored:false});
  doors.push({id:0,x:6,y:27,open:false,locked:false,room:0});
- item('gun',6,31);item('health',4,30,2);
+ item('gun',6,31);item('health',4,32,2);
  for(let k=0;k<6;k++)for(let side=0;side<2;side++){
   const x=13+k*12,y=side?28:12,id=rooms.length;
   carve(x,y,10,9,2);const dy=side?27:21; carve(x+4,dy,1,1);
-  rooms.push({id,name:['Triage','Cold storage','Isolation','Records','Diagnostics','Observation','Quarantine','Surgery','Archive','Specimens','Containment','Generator'][id-1],x,y,w:10,h:9,explored:false});
+  rooms.push({id,name:['Stores','Power control','Workshop','Surveillance','Dispatch','Compressor','Records','Operations','Evidence','Maintenance','Containment','Generator'][id-1],x,y,w:10,h:9,explored:false});
   doors.push({id:doors.length,x:x+4,y:dy,open:false,locked:true,room:id});
   // The first side room is always empty; the remainder are seeded once.
   if(id===1)continue;
@@ -29,6 +29,7 @@ export function createWorld(seed){
  for(let k=0;k<20;k++)spawn(20+k*3.3,24+(k%2));
  item('antidote',12,22);item('antidote',35,26);item('antidote',62,22);
  item('ammo',9,22,24);item('metal',9,25,6);
+ carve(11,8,1,34);carve(84,8,2,34);carve(11,8,75,2);carve(11,40,75,2);
  carve(89,24,1,1);carve(90,16,12,18,3);
  rooms.push({id:13,name:'The heart',x:90,y:16,w:12,h:18,explored:false});
  doors.push({id:13,x:89,y:24,open:false,locked:true,red:true,room:13});

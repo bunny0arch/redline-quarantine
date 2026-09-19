@@ -1,3 +1,14 @@
+# Latest checkpoint: visual revision 2 — 2026-09-19
+
+User requested a darker non-hospital 2D facility using the uploaded hospital model infrastructure and furniture. Implemented 17 actual GLB-derived furniture sprites, 6 supplied surface textures, a single generated fallback combat atlas, image-based characters/pickups, cold lighting, differentiated industrial/security rooms and wall-separated service passages. Original GLB and the repeatable bake script are included. Read docs/VISUAL-REVISION.md and assets/ATTRIBUTION.md.
+
+16 game-logic tests pass. Native Canvas renderer execution successfully loaded all 24 image assets and produced inspected scene renders. Browser/Android validation, APK and GitHub remain uncompleted. Furniture is decorative, not collision-solid. Characters use rotatable single-frame sprites. Start a new game for the expanded map; existing saves retain their layouts.
+
+Package: Redline-Quarantine-Visual-v2.zip. Offline standalone HTML embeds the runtime images. Android sync excludes the source GLB. Original v1 ZIP remains available separately.
+
+---
+## Previous checkpoint record (historical; asset status superseded above)
+
 # Continuation — Redline: Quarantine
 
 ## Current status

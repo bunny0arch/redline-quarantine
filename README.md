@@ -1,10 +1,10 @@
-# REDLINE: Quarantine
+# REDLINE: Quarantine — Visual revision 2
 
 An Android-first, landscape, top-down survival shooter built for Gamathon. Explore a dark facility, kill infected creatures for metal, or cure them into fragile melee companions. Reach 40 kills and 2 total cures to unlock the Red Door and confront the Heart.
 
 ## Current delivery status
 
-The game source and offline desktop HTML build are included. **This is an implementation checkpoint, not a verified final Android release.** Fifteen automated game-logic tests pass, including a 200-seed resource-budget test. Browser playtesting was blocked by the preview browser's local-URL security policy. No Android SDK/compiler is available in the authoring environment and downloads timed out: **no APK has been built or tested**. A new GitHub repository could not be created with the connected connector; browser creation needs sign-in. **No remote or GitHub push exists yet.** The ZIP preserves local development history as `redline-history.bundle`.
+The game source and offline desktop HTML build are included. **This is an implementation checkpoint, not a verified final Android release.** Sixteen automated game-logic tests pass, including a 200-seed resource-budget test. Browser playtesting was blocked by the preview browser's local-URL security policy. No Android SDK/compiler is available in the authoring environment and downloads timed out: **no APK has been built or tested**. A new GitHub repository could not be created with the connected connector; browser creation needs sign-in. **No remote or GitHub push exists yet.** The ZIP preserves local development history as `redline-history.bundle`.
 
 ## Play on desktop
 
@@ -67,6 +67,9 @@ Expected output after a successful build: `android/app/build/outputs/apk/debug/a
 - `src/state.js` — fresh state and local save/backup/settings handling.
 - `src/game.js` — gameplay simulation, combat, crafting, companions and boss.
 - `src/render.js` — Canvas drawing, centered camera and visibility mask.
+- `src/assets.js` — runtime image catalog, patterns and furniture placement.
+- `assets/source/hospital.glb` — original supplied source model.
+- `scripts/bake_facility.py` — reproducible 3D-to-2D furniture conversion.
 - `src/input.js` — keyboard/mouse and multi-pointer touch controls.
 - `src/audio.js` — small audio synthesis fallback.
 - `src/main.js`, `index.html`, `style.css` — menus, HUD, lifecycle and UI.
@@ -109,7 +112,11 @@ Friends should clone the GitHub repository, create a branch with `git switch -c 
 
 ## Assets and licensing
 
-Your preference is to reuse public assets before creating new ones. Kenney asset downloads were unreachable from the authoring environment; attempts to read candidate public icon assets through the connector also failed. Therefore **no downloaded third-party sprites/audio are claimed or included**. No image-generation service was called. The current checkpoint uses small code-drawn silhouettes/tiles/UI and lightweight synthesized tones as fallback. These are editable in render.js/style.css/audio.js. Replace these with appropriately licensed pre-built artwork/audio once downloads are available, and record source URL, author, exact license and modifications in `assets/ATTRIBUTION.md` before redistribution.
+Visual revision 2 uses 17 furniture sprites rendered from your supplied GLB, six supplied textures, and one generated fallback combat atlas. The game is an industrial-security facility, not a hospital. Read assets/ATTRIBUTION.md and docs/VISUAL-REVISION.md for exact provenance and verification. Start a NEW GAME to see added service passages.
+
+### Prior checkpoint history
+
+Your preference is to reuse public assets before creating new ones. Kenney asset downloads were unreachable from the authoring environment; attempts to read candidate public icon assets through the connector also failed. Therefore **no downloaded third-party sprites/audio are claimed or included**. No image-generation service was called for the first checkpoint; revision 2 used one combat-atlas generation only. The first checkpoint used code-drawn silhouettes. Revision 2 replaces those actors, pickups and furnishings with image assets; lightweight synthesized audio remains. These are editable in render.js/style.css/audio.js. Replace these with appropriately licensed pre-built artwork/audio once downloads are available, and record source URL, author, exact license and modifications in `assets/ATTRIBUTION.md` before redistribution.
 
 The Gamathon Studio text/monogram is a placeholder team identity because no team logo/name was provided. Replace it with your actual team branding.
 
@@ -117,8 +124,8 @@ The Gamathon Studio text/monogram is a placeholder team identity because no team
 
 - No APK, Android compile verification, installed-device test, browser visual playtest or performance measurement yet.
 - No GitHub repository or remote push yet; local history is included.
-- Public asset integration and presentation polish remain outstanding.
-- Rendering uses simple geometric silhouettes; music is a drone, not a composed score. Footstep loops and dedicated boss music are not implemented.
+- Supplied model assets are integrated; further art/animation polish remains possible.
+- Rendering now uses model-derived furniture and a combat sprite atlas; music is a drone, not a composed score. Footstep loops and dedicated boss music are not implemented.
 - Randomization affects contents, not facility topology. Corridor pickups are intentionally guaranteed to make progression feasible despite empty optional rooms.
 - Companions and enemies use shared player-directed navigation with local steering. Complex crowd/doorway behavior needs real playtesting.
 - Furniture is visual decoration rather than a physical obstacle.

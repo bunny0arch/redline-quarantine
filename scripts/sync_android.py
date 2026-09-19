@@ -7,5 +7,5 @@ out.mkdir(parents=True,exist_ok=True)
 for name in ['index.html','style.css']:
     shutil.copy2(root/name,out/name)
 for name in ['src','assets']:
-    shutil.copytree(root/name,out/name,dirs_exist_ok=True)
+    shutil.copytree(root/name,out/name,dirs_exist_ok=True,ignore=shutil.ignore_patterns('source','*.md'))
 print('Android assets synchronized:',out)

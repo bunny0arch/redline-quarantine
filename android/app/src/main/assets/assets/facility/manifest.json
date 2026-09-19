@@ -1,0 +1,150 @@
+{
+  "worktable": {
+    "file": "worktable.png",
+    "sourceNode": 362,
+    "width": 210,
+    "height": 384,
+    "source": "hospital.zip/source/hospital.glb"
+  },
+  "shelving": {
+    "file": "shelving.png",
+    "sourceNode": 4698,
+    "width": 384,
+    "height": 322,
+    "source": "hospital.zip/source/hospital.glb"
+  },
+  "vent": {
+    "file": "vent.png",
+    "sourceNode": 7302,
+    "width": 239,
+    "height": 384,
+    "source": "hospital.zip/source/hospital.glb"
+  },
+  "pallet": {
+    "file": "pallet.png",
+    "sourceNode": 7398,
+    "width": 308,
+    "height": 384,
+    "source": "hospital.zip/source/hospital.glb"
+  },
+  "ladder": {
+    "file": "ladder.png",
+    "sourceNode": 8714,
+    "width": 131,
+    "height": 384,
+    "source": "hospital.zip/source/hospital.glb"
+  },
+  "extinguisher": {
+    "file": "extinguisher.png",
+    "sourceNode": 9412,
+    "width": 234,
+    "height": 384,
+    "source": "hospital.zip/source/hospital.glb"
+  },
+  "cabinet": {
+    "file": "cabinet.png",
+    "sourceNode": 9812,
+    "width": 192,
+    "height": 384,
+    "source": "hospital.zip/source/hospital.glb"
+  },
+  "locker": {
+    "file": "locker.png",
+    "sourceNode": 10254,
+    "width": 202,
+    "height": 384,
+    "source": "hospital.zip/source/hospital.glb"
+  },
+  "console": {
+    "file": "console.png",
+    "sourceNode": 11255,
+    "width": 384,
+    "height": 164,
+    "source": "hospital.zip/source/hospital.glb"
+  },
+  "chair": {
+    "file": "chair.png",
+    "sourceNode": 11339,
+    "width": 212,
+    "height": 384,
+    "source": "hospital.zip/source/hospital.glb"
+  },
+  "keyboard": {
+    "file": "keyboard.png",
+    "sourceNode": 11675,
+    "width": 384,
+    "height": 149,
+    "source": "hospital.zip/source/hospital.glb"
+  },
+  "door": {
+    "file": "door.png",
+    "sourceNode": 14062,
+    "width": 334,
+    "height": 384,
+    "source": "hospital.zip/source/hospital.glb"
+  },
+  "tank": {
+    "file": "tank.png",
+    "sourceNode": 18602,
+    "width": 176,
+    "height": 384,
+    "source": "hospital.zip/source/hospital.glb"
+  },
+  "powerbox": {
+    "file": "powerbox.png",
+    "sourceNode": 19161,
+    "width": 155,
+    "height": 384,
+    "source": "hospital.zip/source/hospital.glb"
+  },
+  "partition": {
+    "file": "partition.png",
+    "sourceNode": 20079,
+    "width": 329,
+    "height": 384,
+    "source": "hospital.zip/source/hospital.glb"
+  },
+  "duct": {
+    "file": "duct.png",
+    "sourceNode": 22358,
+    "width": 186,
+    "height": 384,
+    "source": "hospital.zip/source/hospital.glb"
+  },
+  "grate": {
+    "file": "grate.png",
+    "sourceNode": 22538,
+    "width": 384,
+    "height": 278,
+    "source": "hospital.zip/source/hospital.glb"
+  },
+  "concrete": {
+    "file": "concrete.jpg",
+    "source": "textures/gltf_embedded_8.jpeg"
+  },
+  "plaster": {
+    "file": "plaster.jpg",
+    "source": "textures/gltf_embedded_10.jpeg"
+  },
+  "steel": {
+    "file": "steel.jpg",
+    "source": "textures/gltf_embedded_2.jpeg"
+  },
+  "rust": {
+    "file": "rust.jpg",
+    "source": "textures/gltf_embedded_4.jpeg"
+  },
+  "wood": {
+    "file": "wood.jpg",
+    "source": "textures/gltf_embedded_0.jpeg"
+  },
+  "brushed": {
+    "file": "brushed.jpg",
+    "source": "textures/gltf_embedded_55.jpeg"
+  },
+  "combat": {
+    "file": "combat-atlas.png",
+    "source": "One image_gen call, 2026-09-19; fallback after public sprite retrieval failed",
+    "layout": "3 by 3: player, infected, boss / ally, pistol, ammo / medkit, antidote, metal"
+  }
+}

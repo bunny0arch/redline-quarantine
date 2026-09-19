@@ -7,7 +7,7 @@ subprocess.run(['python3',str(root/'scripts/sync_android.py')],check=True)
 bundle=root.parent/'redline-history.bundle'
 if (root/'.git').exists():
     subprocess.run(['git','-C',str(root),'bundle','create',str(bundle),'--all'],check=True)
-output=root.parent/'Redline-Quarantine-Source.zip'
+output=root.parent/'Redline-Quarantine-Visual-v2.zip'
 skip={'.git','node_modules','.gradle','build','__pycache__'}
 with zipfile.ZipFile(output,'w',zipfile.ZIP_DEFLATED) as archive:
     for file in sorted(root.rglob('*')):
