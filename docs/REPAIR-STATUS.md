@@ -16,6 +16,7 @@ The following defects were corrected:
 8. At 20% health, the Heart now performs a one-time final-containment breach: its health is restored to 55%, eight more creatures spawn, movement and attack cadence increase again, and it gains a 20-projectile burst, an eight-shot aimed cone, and a six-shot final pattern.
 9. Door, shooting, damage, boss-awakening, boss-phase, boss-burst, boss-death, and victory feedback now use distinct synthesized cues with no external audio dependency.
 10. Death and completion screens now have distinct visual treatments, richer run summaries, a guarded one-time death modal, and phase-specific boss HUD warnings.
+11. Android multitouch cleanup now handles lost pointer capture for both the movement joystick and fire/aim button, ensuring canceled gestures cannot leave movement or firing stuck.
 
 ## Verification completed
 
@@ -24,10 +25,11 @@ The following defects were corrected:
 - Standalone HTML was regenerated with `scripts/standalone.py` through `scripts/package.py`.
 - Android runtime assets were regenerated with `scripts/sync_android.py` through `scripts/package.py`.
 - Source and Android runtime JavaScript copies match by SHA-256 for every synchronized module.
+- A debug APK was built successfully with Gradle 8.9, Android API 35, and the full OpenJDK 21 toolchain. Manifest/package metadata, bundled assets, and APK signing verification passed.
 - The original uploaded ZIP was not modified.
 
 ## Not honestly verifiable in this environment
 
-The sandbox has Java 21 but no Gradle, Android SDK, ADB, or physical Android device. Therefore an APK cannot be built or device-tested here. Browser visual and touch playtesting also require a real browser/device environment. These remain release-validation tasks, not silently claimed successes.
+No physical Android device or emulator is attached to this sandbox, so runtime touch playtesting and installation were not possible here. The APK is build-verified and its packaged input code was checked for source parity; device testing remains a release-validation task.
 
 The supplied GLB has no accompanying license information, so its redistribution rights remain unresolved. The placeholder team branding also remains intentionally unchanged.
